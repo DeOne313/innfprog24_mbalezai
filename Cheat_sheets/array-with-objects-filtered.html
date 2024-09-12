@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object cheat sheet</title>
+    <title>Object cheat sheet filtered </title>
 </head>
 <body>
     <ul id="profiles">
@@ -44,12 +44,19 @@
 
         /*
         Vi skal skrive ut hver foreleser i arrayen som er listepunkt: <li>
+        Før vi skriver ut arrayen, skal vi filtrere vekk forelesere født før 1990
+        Vi må gå gjennom hele arrayen med et filter: .filter
+        Når vi kjører .filter, må vi mellomlagre element i en variabel: lecturer
+        For hver lecturer, må vi gjøre en sammenligning (akkurat som i en if-betingelse)
+        I dette tilfelle; er birthyear 
+
+
         Vi må gå gjennom hele arrayen: .map
         Når vi .mapper, må vi mellomlagre element i en variabel: lecturer
         For hver lecturer, må vi legge til en <li> i <ul id="profiles">
         */
 
-        lecturers.map(lecturer => document.getElementById("profiles").innerHTML += `<li>${lecturer.personname}
+        lecturers.filter(lecturer => lecturer.birthyear >= 1990).map(lecturer => document.getElementById("profiles").innerHTML += `<li>${lecturer.personname}
             <ul>
                 ${lecturer.courses.map(course => `<li>${course}</li>`).join("")}
             </ul>
