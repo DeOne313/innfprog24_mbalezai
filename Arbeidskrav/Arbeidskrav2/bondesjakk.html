@@ -220,10 +220,12 @@
                     //Når brikken er plassert på spillerbrettet, må vi sjekke om den - og brikkene rundt - 
                     //utgjør en vinnerkombinasjon. Denne funksjonaliteten ligger i funksjonen sjekkVinner(),
                     //siden dette er et litt større sett med handlinger og kan gi noen ulike utfall.
-                    
+
+                    //Denne koden gjør det slik at koden som sjekker en vinner blir forsinket 1 sekund. 
                     setTimeout(function(){
                     sjekkVinner();
                     }, 1000);
+
                 //Men, hvis cellen ikke er ledig...
                 } else {
                     //...skriver vi ut en beskjed til spilleren, og lar han velge en ny celle.
@@ -290,14 +292,13 @@
             if(rundenVunnet === true) {
                 //Skriv ut hvilken spiller som har vunnet
                 document.getElementById("playerturn").innerHTML = "Spiller " + player + " har vunnet!";
-                //Denne koden gjør om bakgrunnsfargen til vinneren gull.  
+                //Denne koden gjør om bakgrunnsfargen til teksten som viser vinneren gull.  
                 document.getElementById("playerturn").style.backgroundColor = "#FFD700";
                 //Gjør restart spill-knappen synlig
                 document.getElementById("newgame").style.display = "block";
                 //Sett spillstatus til false, slik at ingen spillere får plassere
                 //flere brikker på brettet - dette løses med sjekken i funksjonen spill()
                 spillStatus = false;
-
         
             }
         }
@@ -315,12 +316,23 @@
             while (celleteller < 9) {
                 document.getElementById("celle" + celleteller).innerHTML = "";
                 celleteller++;
+
+                //Denne koden gjør det slik at cellene som har vinner kombinasjonene blir gjort om til orginal fargen. 
+                document.getElementById("celle0").style.backgroundColor = "unset";
+                document.getElementById("celle1").style.backgroundColor = "unset";
+                document.getElementById("celle2").style.backgroundColor = "unset";
+                document.getElementById("celle3").style.backgroundColor = "unset";
+                document.getElementById("celle4").style.backgroundColor = "unset";
+                document.getElementById("celle5").style.backgroundColor = "unset";
+                document.getElementById("celle6").style.backgroundColor = "unset";
+                document.getElementById("celle7").style.backgroundColor = "unset";
+                document.getElementById("celle8").style.backgroundColor = "unset";
+
+                //Denne koden gjør det slik at bakgrunn faren til vinner utskriften resettes når spille startes på nytt.
+                document.getElementById("playerturn").style.backgroundColor = "unset";
+
             }
-            //Denne koden sletter bakgrunnsfargen når spillet restartes. 
-            document.getElementById("playerturn").style.backgroundColor = "unset";
-
-
-
+        
             // 2)
             spillStatus = true;
             // 3)
