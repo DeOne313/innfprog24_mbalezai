@@ -284,7 +284,7 @@
             if(rundenVunnet === true) {
                 //Skriv ut hvilken spiller som har vunnet
                 document.getElementById("playerturn").innerHTML = "Spiller " + player + " har vunnet!";
-                //Gjør om bakgrunnsfargen til vinneren til gull.  
+                //Denne koden gjør om bakgrunnsfargen til vinneren gull.  
                 document.getElementById("playerturn").style.backgroundColor = "#FFD700";
                 //Gjør restart spill-knappen synlig
                 document.getElementById("newgame").style.display = "block";
@@ -308,6 +308,8 @@
                 document.getElementById("celle" + celleteller).innerHTML = "";
                 celleteller++;
             }
+            //Denne koden sletter bakgrunnsfargen når spillet restartes. 
+            document.getElementById("playerturn").style.backgroundColor = "unset";
             // 2)
             spillStatus = true;
             // 3)
