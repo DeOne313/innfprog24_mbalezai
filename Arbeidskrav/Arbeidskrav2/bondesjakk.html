@@ -220,8 +220,10 @@
                     //Når brikken er plassert på spillerbrettet, må vi sjekke om den - og brikkene rundt - 
                     //utgjør en vinnerkombinasjon. Denne funksjonaliteten ligger i funksjonen sjekkVinner(),
                     //siden dette er et litt større sett med handlinger og kan gi noen ulike utfall.
+                    
+                    setTimeout(function(){
                     sjekkVinner();
-
+                    }, 1000);
                 //Men, hvis cellen ikke er ledig...
                 } else {
                     //...skriver vi ut en beskjed til spilleren, og lar han velge en ny celle.
@@ -276,10 +278,14 @@
                 //brikke3, er alle like, og vi har en vinnerkombinasjon. Da 
                 if(brikke1 === brikke2 && brikke2 === brikke3) {
                     rundenVunnet = true;
+                    //Gjør om vinner rekken til fargen gull. Gjelder alle tre kombinasjoner.
+                    document.getElementById("celle" + vinnerKomboPlass1).style.backgroundColor ="#FFD700";
+                    document.getElementById("celle" + vinnerKomboPlass2).style.backgroundColor ="#FFD700";
+                    document.getElementById("celle" + vinnerKomboPlass3).style.backgroundColor ="#FFD700";
                     break;
                 }
             }
-
+            
             //Hvis runden er vunnet, skal vi gjøre noen handlinger:
             if(rundenVunnet === true) {
                 //Skriv ut hvilken spiller som har vunnet
@@ -291,6 +297,8 @@
                 //Sett spillstatus til false, slik at ingen spillere får plassere
                 //flere brikker på brettet - dette løses med sjekken i funksjonen spill()
                 spillStatus = false;
+
+        
             }
         }
 
@@ -310,6 +318,9 @@
             }
             //Denne koden sletter bakgrunnsfargen når spillet restartes. 
             document.getElementById("playerturn").style.backgroundColor = "unset";
+
+
+
             // 2)
             spillStatus = true;
             // 3)
