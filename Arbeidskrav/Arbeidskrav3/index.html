@@ -17,33 +17,65 @@
         <input type="number" id="del2" placeholder="12" max="12">
     </p>
     <p>
-        <button onclick="calcGrade()">Regn ut</button>
+        <button id="knapp" onclick="calcGrade()" disabled>Regn ut</button>
     </p>
 
     <p id="calculate"></p>
+    <p id="percentage"></p>
 
     <script>
-        function calcGrade(){
-            const del1 = document.getElementById("del1").value
-            const del2 = document.getElementById("del2").value 
-
-            const maxdel1 = 30;
-            const maxdel2 = 70;
-
-            document.getElementById("calculate")
-            .value = (0.3 * (del1 / maxdel1 * 100)) + (0.7 * (del2 / maxdel2 * 100));
-
-            console.log("calculate")
-
-            const grades = [
+        const grades = [
                 {grade: "F", treshold: 0},
                 {grade: "E", treshold: 25},
                 {grade: "D", treshold: 44},
                 {grade: "C", treshold: 68},
                 {grade: "B", treshold: 88},
                 {grade: "A", treshold: 100}
-                ]
+                ];
+
+        function calcGrade(){
+            const del1 = document.getElementById("del1").value;
+            const del2 = document.getElementById("del2").value;
+
+            const maxdel1 = 10;
+            const maxdel2 = 12;
+
+
+            grade = (0.3 * (del1 / maxdel1 * 100)) + (0.7 * (del2 / maxdel2 * 100));
+
+            document.getElementById("percentage").innerHTML = `Prosent: = ${grade}`;
+                
+
+            if(grade <= 24){
+                document.getElementById("calculate").innerHTML = `Karakteren din er ${"F"}`
+            }else if(grade <= 43){
+                document.getElementById("calculate").innerHTML = `Karakteren din er ${"E"}`
+            }else if(grade <= 67){
+                document.getElementById("calculate").innerHTML = `Karakteren din er ${"D"}`
+            }else if(grade <= 87){
+                document.getElementById("calculate").innerHTML = `Karakteren din er ${"C"}`
+            }else if(grade <= 99){
+                document.getElementById("calculate").innerHTML = `Karakteren din er ${"B"}`
+            }else if(grade <= 100){
+                document.getElementById("calculate").innerHTML = `Karakteren din er ${"A"}`
+            }
+            
         }
+
+        document.getElementById("del1").addEventListener("keyup", ButEna);
+        document.getElementById("del2").addEventListener("keyup", ButEna);
+
+        function ButEna(){
+            const del1 = document.getElementById("del1").value;
+            const del2 = document.getElementById("del2").value;
+            const knapp = document.getElementById("knapp");
+            
+            knapp.disabled =! (del1 && del2);
+        }
+
+
+
+    
 
     
     </script>
