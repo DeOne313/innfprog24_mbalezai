@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakter kalkulator</title>
+</head>
+<body>
+    <h1>Velkommen til Karakterkalkulatoren</h1>
+    <p>Her kan du sjekke karakteren din</p>
+    <p>
+        <label for="del1">Poeng del 1</label>
+        <input type="number" id="del1" placeholder="10" max="10">
+    </p>
+    <p>
+        <label for="del2">Poeng del 2</label>
+        <input type="number" id="del2" placeholder="12" max="12">
+    </p>
+    <p>
+        <button onclick="calcGrade()">Regn ut</button>
+    </p>
+
+    <p id="calculate"></p>
+
+    <script>
+        function calcGrade(){
+            const del1 = document.getElementById("del1").value
+            const del2 = document.getElementById("del2").value 
+
+            const maxdel1 = 30;
+            const maxdel2 = 70;
+
+            document.getElementById("calculate")
+            .value = (0.3 * (del1 / maxdel1 * 100)) + (0.7 * (del2 / maxdel2 * 100));
+
+            console.log("calculate")
+
+            const grades = [
+                {grade: "F", treshold: 0},
+                {grade: "E", treshold: 25},
+                {grade: "D", treshold: 44},
+                {grade: "C", treshold: 68},
+                {grade: "B", treshold: 88},
+                {grade: "A", treshold: 100}
+                ]
+        }
+
+    
+    </script>
+</body>
+</html>
