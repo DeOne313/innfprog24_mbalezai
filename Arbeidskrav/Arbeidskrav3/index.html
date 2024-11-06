@@ -4,26 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karakter kalkulator</title>
+    <style>
+        body{
+            padding: 20px;
+            margin: 20px;
+            background-color: #D3D3D3;
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+            font-size: 40px;
+        }
+        h2{
+            font-size: 30px;
+        }
+        section{
+            font-size: 30px;
+            display: grid;
+            justify-content: center;
+        }
+        
+        p{
+            font-size: 30px;
+            text-align: center;
+        }
+
+        input{
+            font-size: 20px;
+        }
+        #knapp{
+            font-size: 30px;
+            background-color: #00FF00;
+        }
+    </style>
 </head>
 <body>
     <h1>Velkommen til Karakterkalkulatoren</h1>
-    <p>Her kan du sjekke karakteren din</p>
-    <p>
-        <label for="del1">Poeng del 1</label>
-        <input type="number" id="del1" placeholder="10" max="10">
-    </p>
-    <p>
-        <label for="del2">Poeng del 2</label>
-        <input type="number" id="del2" placeholder="12" max="12">
-    </p>
-    <p>
-        <button id="knapp" onclick="calcGrade()" disabled>Regn ut</button>
-    </p>
 
-    <p id="calculate"></p>
-    <p id="percentage"></p>
+    <section>
+        <h2>Her kan du sjekke karakteren din ved å skrive inn poeng fra Del 1 og Del 2</h2>
+        <p>Vær obs på at du kan kun skrive gyldig poengsum i feltene</p>
+        <p>
+            <label for="del1">Poeng del 1</label>
+            <input type="number" id="del1" placeholder="10">
+        </p>
+        <p>
+            <label for="del2">Poeng del 2</label>
+            <input type="number" id="del2" placeholder="12">
+        </p>
+        <p>
+            <button id="knapp" onclick="calcGrade()" disabled>Beregn karakter</button>
+        </p>
+        
+        <!--Denne p taggen er tom og brukes for å skrive ut karaktreren til brukeren.-->
+        <p id="calculate"></p>
+    </section>
 
     <script>
+        
+        //Tabell for karakter skalaen
         const grades = [
                 {grade: "F", treshold: 0},
                 {grade: "E", treshold: 25},
@@ -33,19 +72,21 @@
                 {grade: "A", treshold: 100}
                 ];
 
+        //Funksjon som får knappen til å gjøre noe
         function calcGrade(){
+            
+            //Her blir informasjon fra input feltene hentet.
             const del1 = document.getElementById("del1").value;
             const del2 = document.getElementById("del2").value;
 
+            //Her settes det en max til hva formelenen kan regne ut, denne er unødvendig siden jeg bare har en funksjon som kjører bare samme formel.
             const maxdel1 = 10;
             const maxdel2 = 12;
 
-
+            //Her forteller vi at GRADE skal følge denne formelen.
             grade = (0.3 * (del1 / maxdel1 * 100)) + (0.7 * (del2 / maxdel2 * 100));
-
-            document.getElementById("percentage").innerHTML = `Prosent: = ${grade}`;
                 
-
+            //Her er logikken til poenggrenser og karakterskala. Her skrives også det ut til den tomme p taggen.
             if(grade <= 24){
                 document.getElementById("calculate").innerHTML = `Karakteren din er ${"F"}`
             }else if(grade <= 43){
@@ -62,22 +103,22 @@
             
         }
 
-        document.getElementById("del1").addEventListener("keyup", ButEna);
-        document.getElementById("del2").addEventListener("keyup", ButEna);
-
-        function ButEna(){
+        //Her er funksjonen for å skru på knappen når input felt får noe verdi.
+        function ButEnable(){
+            
+            //Her henter vi informasjon for å sjekke om input har noe verdi likt på den første funksjonen.
             const del1 = document.getElementById("del1").value;
             const del2 = document.getElementById("del2").value;
-            const knapp = document.getElementById("knapp");
             
-            knapp.disabled =! (del1 && del2);
+            //Her er knappen skrudd av, her sjekker den om input feltene har noe verdi og flipper knappen fra disabled til enabled
+            knapp.disabled =! (del1 && del2);    
         }
 
-
-
-    
-
-    
+        //Her sjekker vi når en bruker har forlatt et input felt med keyup, da kjøres funksjonen på nytt for å sjekke for verdier i input fletet, dette skjer for begge input felt.
+        document.getElementById("del1").addEventListener("keyup", ButEnable);
+        document.getElementById("del2").addEventListener("keyup", ButEnable);
     </script>
 </body>
 </html>
+
+<!--Jeg har ikke brukt noen kilder, bortsett fra Hex kodene til fargene og noen andre små ting som ikke er viktig. Jeg har for det meste brukt cheat sheets som vi har lagd i timene-->
